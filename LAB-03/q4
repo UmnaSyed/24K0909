@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main() {
+int dist, fuelcostfrwd, fuelcostbcwd;
+float fuel1, fuel2, totalfuelcost, totalfuelconsumed, fuelcost1, fuelcost2;
+dist=1207;
+fuelcostfrwd=118;
+fuelcostbcwd=123;
+printf("Enter the amount of fuel consumed per km during the journey to B. Please add positive values only.");
+scanf ("%f", &fuel1);
+printf("Enter the amount of fuel consumed per km during the journey back to A. Please add positive values only.");
+scanf("%f", &fuel2);
+totalfuelconsumed=(fuel1*dist)+(fuel2*dist);
+fuelcost1=fuel1*fuelcostfrwd*dist;
+fuelcost2=fuel2*fuelcostbcwd*dist;
+totalfuelcost=fuelcost2+fuelcost1;
+printf("The total fuel consumed for the trip: %.2f liters\n", totalfuelconsumed);
+printf("The total fuel cost for the trip: %.2f Rs\n", totalfuelcost); 
+return 0;
+}
