@@ -1,1 +1,14 @@
 Q2:
+#include <stdio.h>
+int main() {
+int a,b,c;
+printf("enter your two digit number");
+scanf("%d",&a);
+scanf ("%d",&b);
+c=a;
+a=b;
+printf("your new number after swapping the digits is: \n");
+printf("%d", a);
+printf("%d",c);
+return 0;
+}
