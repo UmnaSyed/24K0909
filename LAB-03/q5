@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main() {
+float principle, rate, interest, timeperiod;
+printf("Enter the value of your investment. Please note: Your principle should be between Rs.100-Rs.1,000,000.");
+scanf("%f", &principle);
+printf("Enter the time period in years. Please note: Your time duration should be between 1 to 10 years only.");
+scanf("%f", &timeperiod);
+printf("Enter your rate in percentage. Please note: Your rate of interest should be between 5 to 10 percent.");
+scanf("%f", &rate);
+interest=((principle*rate*timeperiod)/100);
+printf("Your simple interest value is Rs. %f\n", interest);
+return 0;
+}
