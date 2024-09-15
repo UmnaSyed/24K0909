@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main () {
+int num1,num2,ans;
+char operator;
+printf("Enter your first number");
+scanf("%d",&num1);
+printf("Enter your second number");
+scanf("%d", &num2);
+printf("Enter your operator (any from +,-,/ or *) ");
+scanf(" %c", &operator);
+switch (operator){
+case '+':
+ans=num1+num2;
+printf("your answer is %d\n", ans);
+break;
+case '-':
+ans=num1-num2;
+printf("your answer is: %d \n", ans);
+break;
+case '*':
+ans=num1*num2;
+printf("your answer is: %d\n", ans);
+break;
+case '/':
+ans=num1/num2;
+printf("your answer is %d\n", ans);
+break;
+default:
+printf("Invalid operation! Please enter any operation from +,-,* or /.");
+break;
+}
+return 0;
+}
