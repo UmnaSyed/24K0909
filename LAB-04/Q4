@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main() {
+	
+	float cost, discount, discountedcost, saved;
+	printf("Enter the cost of shopping: ");
+    scanf("%f", &cost);
+
+    if (cost < 500) {
+        printf("total cost must be more than 500 for discount \n");
+    } else {
+        if (cost < 2000) {
+            discount = (cost*5)/100;
+        } else if (cost >= 2000 && cost <=4000) {
+            discount = (cost*10)/100;
+        } else if (cost >=4000 && cost <= 6000) {
+            discount = (cost*20)/100;
+        } else {
+            discount = (cost*35)/100;
+        }
+	
+	discountedcost=cost-discount;
+	saved=discount;
+	printf("Total: %f \n" ,cost);
+	printf("Amount saved %f \n",saved);
+	printf("Discounted cost is: %f \n",discountedcost);
+	}
+}
