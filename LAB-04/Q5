@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main(){
+char name [100];
+int unitsconsumed;
+int customerid;
+float bill;
+float surchargedbill;
+float surcharges;
+
+printf("Enter your Name");
+scanf("%[^\n]s", name);
+printf("Enter your Customer ID");
+scanf("%d", &customerid);
+printf("Enter the Number of Units Consumed");
+scanf("%d", &unitsconsumed);
+
+if (unitsconsumed <=199){
+bill=unitsconsumed*16.20;
+}
+else if (unitsconsumed >=199 && unitsconsumed < 300){
+bill=unitsconsumed*20.10;
+} 
+else if (unitsconsumed >=300 && unitsconsumed < 500){
+bill=unitsconsumed*27.10;
+} 
+else {
+bill=unitsconsumed*35.90;
+}
+
+if (bill>18000){
+surcharges=(bill*0.15);
+surchargedbill=bill+surcharges;
+}else {
+surchargedbill=bill;
+}
+
+printf("CustomerID: %d\n",customerid);
+printf("Customer Name: %s\n",name);
+printf("Units Consumed:%d\n",unitsconsumed);
+printf("Amount Charges:Rs. %f\n",bill);
+printf("Surcharges:Rs. %f\n",surcharges);
+printf("Total Bill:Rs. %f\n",surchargedbill);
+
+return 0;
+}
