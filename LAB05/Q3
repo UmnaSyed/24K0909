@@ -1,1 +1,18 @@
+#include<stdio.h>
+int main() {
+int num;
+printf("Enter a number");
+scanf("%d",&num);
 
+if (num%3==0 && num%5==00){ 
+printf("The number is divisible by both 3 and 5");
+} else if (num%3==0 && num%5!=0) {
+printf("Only divisble by 3");
+} else if (num%5==0 && num%3!=0) {
+printf("Only divisble by 5");
+}
+else {
+printf("Neither divisble by 3 nor by 5.");
+}
+return 0;
+}
