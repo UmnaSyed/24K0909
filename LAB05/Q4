@@ -1,1 +1,21 @@
+#include<stdio.h>
+int main() {
+char citizenstat;
+int age;
+
+printf("Enter your age");
+scanf("%d", &age);
+printf("Are you a citizen? Write y for yes and n for no.");
+scanf(" %c",&citizenstat);
+
+if (citizenstat=='y' && age>=18){
+printf("You are eligible to vote");
+} else if (citizenstat=='n' && age>=18) {
+printf("You are not eligible, Citizenship status missing!");
+}
+else { 
+printf("You are not eligible.");
+}
+return 0;
+}
 
