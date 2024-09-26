@@ -1,1 +1,39 @@
+#include<stdio.h>
+int main(){
+float attendance, assignscore, examscore, finalscore;
+printf("Enter your attendance percentage.");
+scanf("%f", &attendance);
+printf("Enter your assignment percentage.");
+scanf("%f", &assignscore);
+printf("Enter your examination percentage.");
+scanf("%f", &examscore);
+if (attendance>=75){
+  finalscore=(0.2*attendance)+(0.3*assignscore)+(0.5*examscore);
+   if (finalscore>=90){
+	printf("your final grade is:A*");}
+   else if (finalscore>=80 && finalscore<=90){
+	printf("your final grade is:A-");
+   }
+   else if (finalscore>=70 && finalscore<=80){
+	printf("your final grade is:B");  
+   }
+   else if (finalscore>=60 && finalscore<=70){
+	printf("your final grade is:B-");  
+   }
+   else if (finalscore>=55 && finalscore<=60){
+	printf("your final grade is:C");  
+   }
+   else if (finalscore>=40 && finalscore<=55){
+	printf("your final grade is:D");  
+   }
+   else {
+	printf("Sorry, you failed.");
+   }
+   }
+else {
+  printf("Your attendance is low, sorry you failed.");
+}
+return 0;
+}
+
 
