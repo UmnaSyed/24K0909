@@ -1,1 +1,15 @@
-
+#include <stdio.h>
+int main () {
+int num, one; 
+printf("enter your number");
+scanf("%d", &num);
+one=0;
+while (num>0){
+if (num&1){
+one=one+1;
+}
+num=num>>1;
+}
+printf("the number of ones in your number: %d", one);
+return 0;
+}
