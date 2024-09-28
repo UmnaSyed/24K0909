@@ -1,1 +1,13 @@
-
+#include <stdio.h>
+int main() {
+char text, decrypted, encrypted;
+int key;
+key=20
+printf("Enter your character: ");
+scanf(" %c", &text);
+encrypted = text ^ key;
+decrypted = encrypted ^ key;
+printf("Your encrypted letter is: %c", encrypted);
+printf("Your decrypted letter is: %c", decrypted);
+return 0;
+}
