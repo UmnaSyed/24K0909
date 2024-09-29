@@ -1,14 +1,12 @@
 #include <stdio.h>
 
 int main() {
-    int a, b;
+    int num1, num2;
     printf("Enter two integers to swap: ");
-    scanf("%d %d", &a, &b);
-a = a ^ b;
-b = a ^ b;
-a = a ^ b;
-printf("the swapped integers are:\n a: %d\n b: %d", a, b);
+    scanf("%d %d", &num1, &num2);
+num1 = num1 ^ num2;
+num2 = num1 ^ num2;
+num1 = num1 ^ num2;
+printf("the swapped integers are:\n number 1: %d\n number 2: %d", num1, num2);
 return 0;
 }
-
-
