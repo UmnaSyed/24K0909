@@ -1,1 +1,14 @@
-
+#include <stdio.h>
+int main () {
+int n, sum;
+printf("1,2");
+n=1;
+for (int i=1, p=2; n<=4; n=n+1)
+{ 
+sum=i+p;
+printf(",%d", sum);
+i=p;
+p=sum;
+}
+return 0;
+}
