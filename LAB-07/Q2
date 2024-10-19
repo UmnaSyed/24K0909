@@ -1,1 +1,16 @@
+#include<stdio.h>
+int main(){
+int i, arr[i];
+printf("Enter the number of elements in your array");
+scanf("%d",&i);
+for (int j=0; j<i; j++){
+printf("Enter your numbers");
+scanf("%d",&arr[j]);
+}
+for (int j =i-1 ; j>=0; j--) {
+printf("%d", arr[j]);
+}
+return 0;
+}
+
 
