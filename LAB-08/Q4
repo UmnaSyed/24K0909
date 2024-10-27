@@ -1,1 +1,25 @@
+#include<stdio.h>
+int main(){
+int num1, num2, ans;
+printf("Enter your range\n From:");
+scanf("%d", &num1);
+printf("To:");
+scanf("%d", &num2);
+for (int i = num1; i<=num2; i++){
+if (i<2){
+continue;
+}
+int j;
+for (j=2; j*j<=i; j++){
+ans=i%j;
+if (ans==0){
+break;
+}
+}
+if (j * j > i) {
+printf("%d, ", i);
+}
+}
+return 0; 
+}
 
