@@ -1,0 +1,15 @@
+#include<stdio.h>
+int prod(int a, int b);
+int main(){
+    int a, b;
+int prod(int a, int b){
+    return a * b;
+}
+printf("Enter the first number");
+scanf("%d", &a);
+printf("Enter the second number");
+scanf("%d", &b);
+int result = prod(a,b);
+printf("The product of the two numbers is: %d", result);
+return 0;
+}
