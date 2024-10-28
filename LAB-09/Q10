@@ -1,0 +1,43 @@
+#include<stdio.h>
+int max(int size, int arr[]);
+int min(int size, int arr[]);
+int main(){
+int size;
+printf("Enter the size of your array:");
+scanf("%d", &size);
+int arr[size];
+printf("Enter the elements for your array: ");
+for (int i=0; i<size; i++){
+scanf("%d", &arr[i]);
+}
+printf("Your array is: \n");
+for (int i=0; i<size; i++){
+printf("%d ", arr[i]);
+}
+
+int maxvalue=max(size, arr);
+int minvalue=min(size, arr);
+printf("The largest element in this array is: %d\n", maxvalue);
+printf("The smallest element in this array is: %d\n", minvalue);
+
+return 0;
+}
+int max(int size, int arr[]){
+int max=arr[0];
+for (int i=0; i<size; i++){
+if (max<arr[i]){
+max=arr[i];
+}
+}
+return max;
+}
+int min(int size, int arr[]){
+int min=arr[0];
+for (int i=0; i<size; i++){
+if (min>arr[i]){
+min=arr[i];
+}
+}
+return min;
+}
+
