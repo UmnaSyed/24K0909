@@ -1,0 +1,33 @@
+#include<stdio.h>
+int airth(int a, char oper, int b){
+    switch (oper){
+        case '*' :
+        printf("The product of the two numbers is: %d\n", a*b);
+        break;
+        case '+' :
+        printf("The sum of the two numbers is: %d\n", a+b);
+        break;
+        case '-' :
+        printf("The difference between the two numbers is: %d\n", a-b);
+        break;
+        case '/' :
+        printf("The quotient of the two numbers is: %d\n", a/b);
+        break;
+        default:
+        printf("Incorrect operator: Please enter +, -, *, or /");
+    }
+}
+
+int main (){
+    int b, a;
+    char oper; 
+    printf("Enter your first number\n");
+    scanf("%d", &a);
+    printf("Enter your second number\n");
+    scanf("%d", &b);
+    printf("What operation do you wish to perform?\n");
+    scanf(" %c", &oper);
+
+    airth(a,oper,b);
+return 0;
+}
