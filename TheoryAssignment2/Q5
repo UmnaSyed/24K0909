@@ -1,0 +1,31 @@
+#include<stdio.h>
+int main(){
+    int count;
+    printf("How many histograms do you want to make?\n");
+    scanf("%d", &count);
+    int arr[count];
+    printf("Enter your values: \n");
+    for (int i=0; i<count; i++){
+        scanf("%d", &arr[i]);
+    }
+    printf("Your values are: \n");
+    for (int i=0; i<count; i++){
+        printf("%d", arr[i]);
+    }
+    printf("Horizontal Histogram: \n");
+    for (int i=0; i<count; i++){
+        printf("Value %d: ", i+1);
+        for (int j=0; j<arr[i]; j++){
+            printf("*");
+        }
+        printf("\n");
+    }
+     printf("Vertical Histogram: \n");
+     for (int i=0; i<count; i++){
+        printf("%d: \n", arr[i]);
+        for (int j=0; j<arr[i]; j++){
+            printf("*\n");
+        }
+     }
+return 0;
+}
