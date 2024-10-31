@@ -1,0 +1,24 @@
+#include<stdio.h>
+int winchances(int noofmatches){
+    if (noofmatches%5==0){
+        return -1;
+    }
+    else {
+        return noofmatches%5;
+
+    }
+}
+    int main (){
+        int noofmatches;
+        printf("Enter the number of matchsticks\n");
+        scanf("%d", &noofmatches);
+        int result = winchances(noofmatches);
+        if (result==-1){
+            printf("A cannot win this match");
+    
+        }
+        else {
+            printf("A can win, to guarantee a win, A should draw %d matchsticks on the first try\n", result);
+        }
+        return 0;
+    }
