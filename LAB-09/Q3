@@ -1,1 +1,16 @@
+#include<stdio.h>
+#include<string.h>
+int main() {
+int num;
+char dest[100], src[100];
+printf("Enter your text for the destination string: \n");
+scanf("%100s", &dest);
+printf("Enter your text for the source string: \n");
+scanf("%100s", &src);
+printf("Enter the number of characters you want to append: \n");
+scanf("%d", &num);
+strncat(dest,src, num);
+printf("The result of this concatenation is: %s\n", dest);
+return 0;
+}
 
