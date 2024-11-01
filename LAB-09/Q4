@@ -13,10 +13,10 @@ if (strcmp(arr[i], userarr)==0){
 }
 }
 if (result==1){
-    printf("NAME FOUND!");
+    printf("FOUND!");
 }
 else {
-    printf("NAME NOT FOUND!");
+    printf("FOUND!");
 }
 return 0;
 }
