@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+int main() {
+char words[5][20];
+printf("Enter five words with a maximum of 19 charachters each: \n");
+for (int i=0; i<5; i++){
+scanf("%19s", words[i]);
+}
+for (int i=0; i<5; i++){
+    int n=strlen(words[i]);
+    int palindromic=1;
+    for (int j=0; j<n/2; j++){
+        if (words[i][j]!=words[i][n-j-1]){
+        palindromic=0;
+        break;
+    }
+    }
+    if (palindromic==1){
+        printf("Word %s is palindromic\n", words[i]);
+    }
+        else {
+            printf("Word %s is not palindromic\n", words[i]);
+        }
+    }
+return 0;
+}
