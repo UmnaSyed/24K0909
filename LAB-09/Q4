@@ -16,7 +16,7 @@ if (result==1){
     printf("FOUND!");
 }
 else {
-    printf("FOUND!");
+    printf("NOT FOUND!");
 }
 return 0;
 }
