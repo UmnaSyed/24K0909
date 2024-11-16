@@ -10,7 +10,7 @@ int main(){
     }
     printf("Your values are: \n");
     for (int i=0; i<count; i++){
-        printf("%d", arr[i]);
+        printf("%d ", arr[i]);
     }
     printf("Horizontal Histogram: \n");
     for (int i=0; i<count; i++){
