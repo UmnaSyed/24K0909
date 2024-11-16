@@ -13,12 +13,12 @@ int main()
     {
         srand(time(NULL));
 
-        // filling the array with random letters
+        
         for (i = 0; i < 5; i++) 
         {
             for (j = 0; j < 5; j++) 
             {
-                array[i][j] = 'A' + rand() % 26; // random capital letters
+                array[i][j] = 'A' + rand() % 26; 
             }
         }
 
@@ -40,19 +40,18 @@ int main()
             printf("\n");
         }
 
-        // inputting search string
+        
         printf("Enter a string. To quit the game, enter 'END': ");
         fgets(tosearch, sizeof(tosearch), stdin);
-        tosearch[strcspn(tosearch, "\n")] = 0; // removing newline
+        tosearch[strcspn(tosearch, "\n")] = 0; 
 
         if (strcmp(tosearch, "END") == 0) 
             {break;}
 
-        // searching the string
         int found=0;
         int length = strlen(tosearch);
 
-        // horizontal 
+
         for (i=0; i<6; i++) 
         {
             for (j=0; j<=5 - length; j++) 
@@ -76,7 +75,6 @@ int main()
                 {break;}
         }
 
-        // vertical searching
         if (found == 0) 
         {
             for (j=0; j<5; j++) 
@@ -103,7 +101,7 @@ int main()
             }
         }
 
-        // printing score
+        
         if (found == 1) 
         {
             score++;
