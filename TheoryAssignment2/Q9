@@ -16,11 +16,11 @@ int main()
 
 while(1)
 {
-    //inputting move
+   
     printf("enter your move: \n'W': up, 'S': down, 'A': left, 'D': right, 'Q': quit\n");
     scanf(" %c", &move);
     
-    //moving through the grid
+  
     switch (move) // i->row,,,j->col
     {
 
@@ -46,7 +46,7 @@ while(1)
     displaygrid(grid);
     break;
 
-    case 'S': case 's': //down
+    case 'S': case 's': 
     if (i==4)
         {printf("Cannot move down. Grid doesnot exist\n");}
     else if(grid[i+1][j] == 'X')
@@ -68,7 +68,7 @@ while(1)
     displaygrid(grid);
     break;
 
-    case 'A': case 'a': //left
+    case 'A': case 'a': 
     if (j==0)
         {printf("Cannot move left. Grid doesnot exist\n");}
     else if(grid[i][j-1] == 'X')
@@ -90,9 +90,9 @@ while(1)
     displaygrid(grid);
     break;
 
-    case 'D': case 'd': //right
+    case 'D': case 'd': 
     if (j==4)
-        {printf("Cannot move right. Grid doesnot exist\n");}
+        {printf("Cannot move right. Grid does not exist\n");}
     else if(grid[i][j+1] == 'X')
         {printf("Oops! Obstacle encountered. Cannot move right\n");}
     else if(grid[i][j+1] == 'I')
@@ -115,7 +115,7 @@ while(1)
     case 'Q': case 'q':
     printf("Game Ended.");
     printf(" You have successfully collected %d items", items);
-    return 0; //end the program
+    return 0; 
     break;
 
     default:
