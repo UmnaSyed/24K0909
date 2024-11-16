@@ -1,0 +1,141 @@
+#include <stdio.h>
+void displaygrid(char grid[5][5]);
+int main()
+{
+    char grid[5][5] = {
+        {' ', ' ', 'I', 'X', ' '},
+        {' ', 'X', ' ', ' ', ' '},
+        {'I', ' ', 'X', 'X', ' '},
+        {' ', ' ', ' ', 'I', 'X'},
+        {' ', 'X', ' ', ' ', 'P'}
+    };
+    int i=4, j=4, items=0; 
+    char move;
+
+    displaygrid(grid);
+
+while(1)
+{
+    //inputting move
+    printf("enter your move: \n'W': up, 'S': down, 'A': left, 'D': right, 'Q': quit\n");
+    scanf(" %c", &move);
+    
+    //moving through the grid
+    switch (move) // i->row,,,j->col
+    {
+
+    case 'W': case 'w': //up
+    if (i==0)
+        {printf("Cannot move up. Grid doesnot exist\n");}
+    else if(grid[i-1][j] == 'X')
+        {printf("Oops! Obstacle encountered. Cannot move up\n");}
+    else if(grid[i-1][j] == 'I')
+        {
+            printf("You collected an item!\n");
+            items++;
+            grid[i][j] = ' ';
+            i--;
+            grid[i][j] = 'P';
+        }
+    else
+    {
+        grid[i][j] = ' ';
+        i--;
+        grid[i][j] = 'P';
+    }
+    displaygrid(grid);
+    break;
+
+    case 'S': case 's': //down
+    if (i==4)
+        {printf("Cannot move down. Grid doesnot exist\n");}
+    else if(grid[i+1][j] == 'X')
+        {printf("Oops! Obstacle encountered. Cannot move down\n");}
+    else if(grid[i+1][j] == 'I')
+        {
+            printf("You collected an item!\n");
+            items++;
+            grid[i][j] = ' ';
+            i++;
+            grid[i][j] = 'P';
+        }
+    else
+    {
+        grid[i][j] = ' ';
+        i++;
+        grid[i][j] = 'P';
+    }
+    displaygrid(grid);
+    break;
+
+    case 'A': case 'a': //left
+    if (j==0)
+        {printf("Cannot move left. Grid doesnot exist\n");}
+    else if(grid[i][j-1] == 'X')
+        {printf("Oops! Obstacle encountered. Cannot move left\n");}
+    else if(grid[i][j-1] == 'I')
+        {
+            printf("You collected an item!\n");
+            items++;
+            grid[i][j] = ' ';
+            j--;
+            grid[i][j] = 'P';
+        }
+    else
+    {
+        grid[i][j] = ' ';
+        j--;
+        grid[i][j] = 'P';
+    }
+    displaygrid(grid);
+    break;
+
+    case 'D': case 'd': //right
+    if (j==4)
+        {printf("Cannot move right. Grid doesnot exist\n");}
+    else if(grid[i][j+1] == 'X')
+        {printf("Oops! Obstacle encountered. Cannot move right\n");}
+    else if(grid[i][j+1] == 'I')
+        {
+            printf("You collected an item!\n");
+            items++;
+            grid[i][j] = ' ';
+            j++;
+            grid[i][j] = 'P';
+        }
+    else
+    {
+        grid[i][j] = ' ';
+        j++;
+        grid[i][j] = 'P';
+    }
+    displaygrid(grid);
+    break;
+
+    case 'Q': case 'q':
+    printf("Game Ended.");
+    printf(" You have successfully collected %d items", items);
+    return 0; //end the program
+    break;
+
+    default:
+    printf("invalid input\n");
+    break;
+    }
+}
+}
+
+void displaygrid(char grid[5][5])
+{
+    int i, j;
+    for(i=0; i<5; i++)
+    {
+        printf("{");
+        for(j=0; j<5; j++)
+        {
+            printf("'%c' ", grid[i][j]);
+        }
+        printf("}");
+        printf("\n");
+    }
+}
