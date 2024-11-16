@@ -61,7 +61,7 @@ void compressword(char word[], char temp[], int *removed)
             j++; // increment the position for temp array
         }
         else
-            {(*removed)++;} //ROUND BRACKETS
+            {(*removed)++;} 
     }
 }
 
