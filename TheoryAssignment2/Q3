@@ -1,1 +1,81 @@
+#include <stdio.h>
+#include <string.h>
 
+void compressword(char word[], char temp[], int *removed);
+void compressmultiplewords(char words[][50], char temps[][50], int *totalremoved, int numofwords);
+
+int main()
+{
+    char word[50], temp[50]; 
+    int removed;
+
+    int numofwords, i;
+    int totalremoved;
+    char words[50][50], temps[50][50];
+    int choice;
+    printf("Do you want to compress?\n1. single word\n2. multiple words\n");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+        printf("enter the word to compress: ");
+        scanf("%s", word);
+        compressword(word, temp, &removed);
+        printf("Compressed word: %s\nNumber of removed characters: %d\n", temp, removed);
+        break;
+
+    case 2:
+        printf("enter the number of words: ");
+        scanf("%d", &numofwords);
+        for(i=0; i<numofwords; i++)
+        {
+            printf("\nenter word %d: ", i+1);
+            scanf("%s", words[i]);
+        }
+        
+        compressmultiplewords(words, temps, &totalremoved, numofwords);
+        for (i = 0; i < numofwords; i++) 
+        {
+            printf("Original: %s, Compressed: %s\n", words[i], temps[i]);
+        }
+        printf("Total characters removed: %d\n", totalremoved);
+        break;
+    
+    default:
+        printf("invalid input\n");
+    }
+}
+
+void compressword(char word[], char temp[], int *removed)
+{
+    int i, j=0;
+    *removed = 0;
+
+    //compressing the word
+    for(i=0; word[i] != '\0'; i++)
+    {
+        if (word[i] != word[i+1])
+        {
+            temp[j] = word[i];
+            j++; // increment the position for temp array
+        }
+        else
+            {(*removed)++;} //ROUND BRACKETS
+    }
+}
+
+void compressmultiplewords(char words[][50], char temps[][50], int *totalremoved, int numofwords)
+{
+    int i, removed;
+    *totalremoved = 0;
+
+    int currentwordRemoved=0;
+
+    for(i=0; i<numofwords; i++)
+    {
+        compressword(words[i], temps[i], &removed);
+        *totalremoved = *totalremoved + removed;
+    }
+
+}
