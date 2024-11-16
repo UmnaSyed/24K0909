@@ -1,1 +1,80 @@
+#include <stdio.h>
+#include <string.h>
 
+int main()
+{
+    char transactions[6][10] = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    int size = 6;
+    char word[6][50];
+    char grouped[6];
+    char sortedword1[10];
+    char sortedword2[10];
+    int i, j, m, n, v, w;
+
+    //initialising group with 0
+    for(i=0; i<6; i++)
+        {grouped[i] = 0;}
+
+    //storing each word from 'transactions' array to 'word' array
+    for(i=0; i<size; i++)
+    {
+        if (grouped[i] == 1)// skip if it is already grouped
+            {continue;}
+
+        //making a copy of the word and sorting it
+        strcpy(sortedword1/*dont write '[i]' here*/, transactions[i]);
+        int length1 = strlen(sortedword1); //dont write '[i]' here
+        char temp;
+
+        //sorting sortedword1
+        for (m=0; m<length1-1; m++)
+        {
+            for (n=m+1; n<length1; n++)
+            {
+                if (sortedword1[m] > sortedword1[n])
+                {
+                    temp = sortedword1[m];
+                    sortedword1[m] = sortedword1[n];
+                    sortedword1[n] = temp;
+                }
+            }
+        }
+
+        //printing the first word in the group
+        printf("[ %s", transactions[i]);
+        grouped[i] = 1; //mark it as grouped
+
+        //comparing with other words
+        for (j=i+1; j<size; j++)
+        {
+            if (grouped[j] == 1)
+                {continue;}
+
+            
+            strcpy(sortedword2, transactions[j]);
+            int length2 = strlen(sortedword2);
+
+            //sorting sortedword2
+            for(v=0; v<length2; v++)
+            {
+                for(w=v+1; w<length2; w++)
+                {
+                    if (sortedword2[v] > sortedword2[w])
+                    {
+                        temp = sortedword2[v];
+                        sortedword2[v] = sortedword2[w];
+                        sortedword2[w] = temp;
+                    }
+                }
+            }
+            
+            //comparing sorted words
+            if (strcmp(sortedword1, sortedword2) == 0)// returns 0 when strings are equal(we have already sorted it bfr)
+            {
+                printf(", %s", transactions[j]);
+                grouped[j] = 1; //mark it as grouped
+            }
+        }
+        printf(" ]\n");
+    }
+}
