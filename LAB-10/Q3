@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+
+
+struct flight {
+   int flightno;
+   char dest[100];
+   char dept[100];
+   int date[8];
+   int seats;
+};
+
+void booking(struct flight Flight){
+    if(Flight.seats==0){
+        printf("Sorry no seats available!\n");
+    }
+    else {
+        Flight.seats--;
+        printf("Seat confirmed!\n");
+    }
+}
+void displaydet(struct flight Flight){
+printf("Flight number: %d\n", Flight.flightno);
+printf("Departure city: %s\n", Flight.dept);
+printf("Destination City: %s\n", Flight.dest);
+printf("Number of available seats: %d\n", Flight.seats);
+}
+int main (){
+    int choice; 
+    printf("Welcome!\n");
+    printf("1.Display Flight Details.\n");
+    printf("2.Book a Seat\n");
+    printf("3.Exit\n");
+    printf("Enter your choice: \n");
+    scanf("%d", &choice);
+    struct flight Flight={10145, "Karachi", "Lahore", 20241106, 30};
+    switch (choice){
+        case 1:
+        displaydet(Flight);
+        break;
+        case 2: 
+        booking(Flight);
+        break;
+        case 3:
+        return 0;
+        default:
+        printf("Invalid Choice!\n");
+    }
+    return 0;
+}
+
