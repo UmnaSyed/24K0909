@@ -6,7 +6,7 @@ struct flight {
    int flightno;
    char dest[100];
    char dept[100];
-   int date[8];
+   int date;
    int seats;
 };
 
