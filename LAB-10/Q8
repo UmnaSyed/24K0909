@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<string.h>
+
+
+struct Cars{
+    char make[100];
+    char model[100];
+    int year;
+    float price;
+    int mileage;
+};
+void add(struct Cars cars[], int noofcars){
+    noofcars=3;
+if (noofcars>100){
+    printf("Cannot add more cars!");
+}
+else {
+printf("Enter the following details: \n");
+printf("Make: \n");
+scanf("%s",cars[noofcars].make);
+printf("Model: \n");
+scanf("%s",cars[noofcars].model);
+printf("Year: \n");
+scanf("%d",&cars[noofcars].year);
+printf("Mileage: \n");
+scanf("%d",&cars[noofcars].mileage);
+printf("Price: \n");
+scanf("%f",&cars[noofcars].price);
+noofcars++;
+}
+}
+void display(struct Cars cars[], int noofcars){
+   printf("Details of available cars: \n");
+    for (int i=0; i<noofcars; i++){
+        printf("Car %d\n", i+1);
+        printf("Make: %s\n", cars[i].make);
+        printf("Model: %s\n", cars[i].model);
+        printf("Year: %d\n", cars[i].year);
+        printf("Mileage: %d\n", cars[i].mileage);
+        printf("Price: %.2f\n", cars[i].price);
+        printf("\n");
+}
+}
+void search(struct Cars cars[], int noofcars){
+    char search[100];
+    printf("Enter make or model number: ");
+    scanf("%s", search);
+    printf("Searched Results:\n");
+    for (int i=0; i<noofcars; i++){
+        int result=0;
+        if (strstr(cars[i].model, search)|| (strstr(cars[i].make, search))){
+            printf("Car number: %d\n", i+1);
+            printf("Make: %s\n", cars[i].make);
+            printf("Model: %s\n", cars[i].model);
+            printf("Year: %d\n", cars[i].year);
+            printf("Mileage: %d\n", cars[i].mileage);
+            printf("Price: %.2f\n", cars[i].price);
+            result=1;
+        }
+        if (result!=1){
+            printf("No cars found!");
+        }
+        }
+    }
+
+int main (){
+    int noofcars=2, choice;
+    struct Cars cars[2]={
+        {"Ford", "Mustang", 2023, 450000, 35377},
+        {"Honda", "Elantra", 2022, 350220, 93938},
+    };
+    printf("Welcome!\n");
+    printf("1. Add a new record\n");
+    printf("2. Display all the cars in the inventory\n");
+    printf("3. Search for a car.\n");
+    printf("Enter your option: \n");
+    scanf("%d", &choice);
+    switch (choice){
+        case 1:
+        add(cars, noofcars);
+        break;
+        case 2:
+        display(cars, noofcars);
+        break;
+        case 3:
+        search(cars, noofcars);
+        break;
+        default:
+        printf("Invalid option!");
+        return 0;
+    }
+return 0;
+}
