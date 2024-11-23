@@ -16,10 +16,10 @@ void reverse(char arr[], int start, int end){
 int main (){
     char arr[100];
     int start, end;
-    printf("Enter your sentence: ");
+    printf("Enter your words: ");
     scanf("%s", arr);
     int n=strlen(arr);
     reverse(arr, 0, n-1);
-    printf("Your reversed sentence is: %s \n", arr);
+    printf("Your reversed word is: %s \n", arr);
     0;
 }
