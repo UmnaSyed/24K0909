@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <string.h>
+
+struct TravelPackage {
+    char packageName[100];
+    char destination[100];
+    int days;  
+    float cost;    
+    int availableSeats;
+};
+
+void displayPackages(struct TravelPackage packages[], int packageCount) {
+    printf("\nAvailable Travel Packages:\n");
+    for (int i = 0; i < packageCount; i++) {
+        printf("No: %d\n", i+1);  
+        printf("Package Name: %s\n", packages[i].packageName);
+        printf("Destination: %s\n", packages[i].destination) ;
+        printf("Duration: %d days\n", packages[i].days);
+        printf("Cost($): %d\n", packages[i].cost);
+        printf("Seats: %d\n", packages[i].availableSeats);
+    }
+}
+
+void bookPackage(struct TravelPackage packages[], int packageCount) {
+    int choice;
+    int seatsbook;
+
+    displayPackages(packages, packageCount);
+
+    printf("Enter the number of the package you want to book: ");
+    scanf("%d", &choice);
+
+    if (choice < 1 || choice > packageCount) {
+        printf("Invalid choice. Please select a valid package.\n");
+        return;
+    }
+
+    printf("Enter the number of seats you want to book: ");
+    scanf("%d", &seatsbook);
+
+    if (seatsbook > packages[choice - 1].availableSeats) {
+        printf("Not enough seats available. Only %d seats left.\n", packages[choice - 1].availableSeats);
+    } else {
+        packages[choice - 1].availableSeats -= seatsbook;
+        printf("Successfully booked %d seat(s) in the package %s!\n", 
+                seatsbook, packages[choice - 1].packageName);
+    }
+}
+
+int main() {
+    struct TravelPackage packages[] = {
+        {"Beach Escape", "Maldives", 7, 1500.00, 10},
+        {"Mountain Adventure", "Switzerland", 10, 2500.00, 5},
+        {"City Lights", "New York", 5, 1200.00, 20},
+        {"Desert Safari", "Dubai", 3, 800.00, 15}
+    };
+
+    int packageCount = sizeof(packages) / sizeof(packages[0]);
+    int choice;
+    do {
+        printf("\nTravel Package Booking System\n");
+        printf("1. Display available packages\n");
+        printf("2. Book a package\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                displayPackages(packages, packageCount);
+                break;
+            case 2:
+                bookPackage(packages, packageCount);
+                break;
+            case 3:
+                printf("Thank you!\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}
