@@ -7,7 +7,7 @@ struct Point{
 float distance(struct Point a, struct Point b){
     float dis;
     dis = sqrt(((a.x - b.x) * (a.x - b.x)) + ((a.y - b.y) * (a.y - b.y)));
-    printf("distance is %f",dis);
+    printf("The distance between the two points is %f",dis);
     return dis;
 }
 int rectangle(struct Point p, struct Point sl, struct Point sr, struct Point wl, struct Point wr) {
