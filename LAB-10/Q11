@@ -3,7 +3,7 @@
 #define M_TO_KM 0.001  
 
 
-void convertcount(float me) {
+void convertcount(float m) {
     static int count = 0;  
     count++; 
 
@@ -15,8 +15,6 @@ void convertcount(float me) {
 int main() {
     float m;
     char choice;
-
-    printf("Meter to Kilometer Conversion Program\n");
     printf("Conversion factor: 1 meter = %.3f kilometers\n\n", M_TO_KM);
 
     do {
