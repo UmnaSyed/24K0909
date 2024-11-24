@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+struct Point{
+    float x;
+    float y;
+};
+float distance(struct Point a, struct Point b){
+    float dis;
+    dis = sqrt(((a.x - b.x) * (a.x - b.x)) + ((a.y - b.y) * (a.y - b.y)));
+    printf("distance is %f",dis);
+    return dis;
+}
+int rectangle(struct Point p, struct Point sl, struct Point sr, struct Point wl, struct Point wr) {
+    if (p.x>= sl.x && p.x <=sr.x) {
+        if (p.y <= sl.y && p.y >=wl.y) {
+            printf("\n Within the rectangular boundary");
+            return 1;
+        }
+    } else {
+        printf("\n Not within the rectangular boundary");
+    }
+    return 0;
+}
+int main(){
+    struct Point A={4,4};
+    struct Point B={3,3};
+    distance(A, B);
+    struct Point sl={2,5};
+    struct Point sr={5,5};
+    struct Point wr={5,2};
+    struct Point wl={2,2};
+    rectangle(A,sl,sr,wl,wr);
+    
+}
