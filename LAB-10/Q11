@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+#define M_TO_KM 0.001  
+
+
+void convertcount(float me) {
+    static int count = 0;  
+    count++; 
+
+    float km = m * M_TO_KM;
+    printf("Conversion: %.2f meters = %.2f kilometers\n", m, km);
+    printf("This function has been called %d times.\n", count);
+}
+
+int main() {
+    float m;
+    char choice;
+
+    printf("Meter to Kilometer Conversion Program\n");
+    printf("Conversion factor: 1 meter = %.3f kilometers\n\n", M_TO_KM);
+
+    do {
+        printf("Enter the distance in meters: ");
+        scanf("%f", &m);
+
+        convertcount(m);  
+
+        printf("Do you want to convert another distance? (Y/N): ");
+        scanf(" %c", &choice);  
+
+    } while (choice == 'Y' || choice == 'y');
+
+    printf("Thank you for using the conversion program!\n");
+    return 0;
+}
