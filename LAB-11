@@ -232,3 +232,4 @@ void deletePlayer(FILE *file) {
         remove("temp.txt");
     }
 }
+// a single file was used to store and manage all the data for easier access and manipulation
