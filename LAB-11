@@ -1,1 +1,234 @@
+#include <stdio.h>
+#include <string.h>
 
+struct player {
+    char name[20];
+    char team[20];
+};
+
+struct bowl {
+    char type[10]; 
+    char arm[5];   
+    struct player ply;
+};
+
+struct bat {
+    char type[10];   
+    char handed[8];   
+    struct bowl ply2;
+};
+
+
+void createPlayer(FILE *file, int *count, int *bowlers);
+void readPlayers(FILE *file);
+void updatePlayer(FILE *file);
+void deletePlayer(FILE *file);
+
+int main() {
+    int count = 0;      
+    int bowlers = 0;   
+    FILE *file = fopen("Players.txt", "w+"); 
+
+    if (!file) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+
+    while (count < 5) {
+        createPlayer(file, &count, &bowlers);
+    }
+
+    fclose(file);
+    file = fopen("Players.txt", "r+");
+    if (file) {
+        printf("\nPlayer List:\n");
+        readPlayers(file);
+    }
+    
+
+    updatePlayer(file);
+    
+
+    rewind(file);
+    printf("\nUpdated Player List:\n");
+    readPlayers(file);
+    
+
+    deletePlayer(file);
+ 
+    rewind(file);
+    printf("\nFinal Player List:\n");
+    readPlayers(file);
+
+    fclose(file);
+    return 0;
+}
+
+
+void createPlayer(FILE *file, int *count, int *bowlers) {
+    struct player p;
+    struct bowl b;
+    struct bat bt;
+
+    printf("\nEnter player name: ");
+    fgets(p.name, sizeof(p.name), stdin);
+    p.name[strcspn(p.name, "\n")] = 0;
+
+    printf("Enter player's team: ");
+    fgets(p.team, sizeof(p.team), stdin);
+    p.team[strcspn(p.team, "\n")] = 0;
+
+    printf("Enter bowling type (seamer, pacer, spinner, or N/A): ");
+    fgets(b.type, sizeof(b.type), stdin);
+    b.type[strcspn(b.type, "\n")] = 0;
+
+    if (strcmp(b.type, "N/A") == 0 && *bowlers < 3) {
+        printf("At least 3 bowlers are required. This player must have a valid bowling type.\n");
+        return;
+    }
+
+    if (strcmp(b.type, "N/A") != 0) {
+        printf("Enter bowling arm (left or right): ");
+        fgets(b.arm, sizeof(b.arm), stdin);
+        b.arm[strcspn(b.arm, "\n")] = 0;
+        (*bowlers)++;
+    } else {
+        strcpy(b.arm, "N/A");
+    }
+
+    printf("Enter batting type (top order, middle order, or lower order): ");
+    fgets(bt.type, sizeof(bt.type), stdin);
+    bt.type[strcspn(bt.type, "\n")] = 0;
+
+    printf("Enter batting handedness (lefty or righty): ");
+    fgets(bt.handed, sizeof(bt.handed), stdin);
+    bt.handed[strcspn(bt.handed, "\n")] = 0;
+
+    fprintf(file, "Player %d:\n", (*count) + 1);
+    fprintf(file, "Name: %s, Team: %s\n", p.name, p.team);
+    fprintf(file, "Bowling: Type: %s, Arm: %s\n", b.type, b.arm);
+    fprintf(file, "Batting: Type: %s, Handed: %s\n\n", bt.type, bt.handed);
+
+    (*count)++;
+    printf("Player added successfully!\n");
+}
+
+
+void readPlayers(FILE *file) {
+    char line[100];
+    rewind(file); 
+    while (fgets(line, sizeof(line), file)) {
+        printf("%s", line);
+    }
+}
+
+void updatePlayer(FILE *file) {
+    char target[20], line[200];
+    struct player p;
+    struct bowl b;
+    struct bat bt;
+    int found = 0;
+
+    printf("\nEnter the name of the player to update: ");
+    fgets(target, sizeof(target), stdin);
+    target[strcspn(target, "\n")] = 0;
+
+    FILE *temp_file = fopen("temp.txt", "w");
+    if (!temp_file) {
+        printf("Error opening temporary file.\n");
+        return;
+    }
+
+    rewind(file); 
+    while (fgets(line, sizeof(line), file)) {
+        if (strstr(line, target) != NULL && !found) {
+            found = 1;
+
+            printf("Enter new player name: ");
+            fgets(p.name, sizeof(p.name), stdin);
+            p.name[strcspn(p.name, "\n")] = 0;
+
+            printf("Enter new player's team: ");
+            fgets(p.team, sizeof(p.team), stdin);
+            p.team[strcspn(p.team, "\n")] = 0;
+
+            printf("Enter new bowling type (seamer, pacer, spinner, or N/A): ");
+            fgets(b.type, sizeof(b.type), stdin);
+            b.type[strcspn(b.type, "\n")] = 0;
+
+            if (strcmp(b.type, "N/A") != 0) {
+                printf("Enter new bowling arm (left or right): ");
+                fgets(b.arm, sizeof(b.arm), stdin);
+                b.arm[strcspn(b.arm, "\n")] = 0;
+            } else {
+                strcpy(b.arm, "N/A");
+            }
+
+            printf("Enter new batting type (top order, middle order, or lower order): ");
+            fgets(bt.type, sizeof(bt.type), stdin);
+            bt.type[strcspn(bt.type, "\n")] = 0;
+
+            printf("Enter new batting handedness (lefty or righty): ");
+            fgets(bt.handed, sizeof(bt.handed), stdin);
+            bt.handed[strcspn(bt.handed, "\n")] = 0;
+
+            fprintf(temp_file, "Player Updated:\n");
+            fprintf(temp_file, "Name: %s, Team: %s\n", p.name, p.team);
+            fprintf(temp_file, "Bowling: Type: %s, Arm: %s\n", b.type, b.arm);
+            fprintf(temp_file, "Batting: Type: %s, Handed: %s\n\n", bt.type, bt.handed);
+        } else {
+            fputs(line, temp_file); 
+        }
+    }
+
+    fclose(file);
+    fclose(temp_file);
+
+    if (found) {
+        remove("Players.txt");
+        rename("temp.txt", "Players.txt");
+        printf("Player updated successfully!\n");
+    } else {
+        printf("Player not found.\n");
+        remove("temp.txt");
+    }
+}
+
+
+void deletePlayer(FILE *file) {
+    char target[20], line[200];
+    int found = 0;
+
+    printf("\nEnter the name of the player to delete: ");
+    fgets(target, sizeof(target), stdin);
+    target[strcspn(target, "\n")] = 0;
+
+    FILE *temp_file = fopen("temp.txt", "w");
+    if (!temp_file) {
+        printf("Error opening temporary file.\n");
+        return;
+    }
+
+    rewind(file);
+    while (fgets(line, sizeof(line), file)) {
+        if (strstr(line, target) != NULL && !found) {
+            found = 1;
+            printf("Deleting player: %s\n", target);
+        } else {
+            fputs(line, temp_file); 
+        }
+    }
+
+    fclose(file);
+    fclose(temp_file);
+
+    if (found) {
+        remove("Players.txt");
+        rename("temp.txt", "Players.txt");
+        printf("Player deleted successfully!\n");
+    } else {
+        printf("Player not found.\n");
+        remove("temp.txt");
+    }
+}
