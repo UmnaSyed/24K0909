@@ -33,6 +33,6 @@ int main(){
         printf("Marks Obtained: \n");
         scanf("%f", &std[i].marks);
     }
-    int result=avg(n, sum, std);
-    printf("Average Marks for this class: %d", result);
+    float result=avg(n, sum, std);
+    printf("Average Marks for this class: %.1f", result);
 }
