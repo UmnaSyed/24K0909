@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Class {
+        char name[50];
+        int rollNo;
+        float marks;
+    };
+
+float avg(int n, int sum, struct Class std[]){
+    sum=0;
+    for (int i=0; i<n; i++){
+        sum=sum+std[i].marks;
+    }
+    int avg=sum/n;
+    return avg;
+}
+int main(){
+    int n, sum;
+    printf("Enter the number of students: \n");
+    scanf("%d", &n);
+    struct Class *std =(struct Class*)malloc(n * sizeof(struct Class));
+    if (!std){
+        printf("Memory Allocation failed!");
+        return 1;
+    }
+    printf("Enter details for students: \n");
+    for (int i=0; i<n; i++){
+        printf("Name: \n");
+        scanf(" %[^\n]", std[i].name);
+        printf("Roll Number: \n");
+        scanf("%d", &std[i].rollNo);
+        printf("Marks Obtained: \n");
+        scanf("%f", &std[i].marks);
+    }
+    int result=avg(n, sum, std);
+    printf("Average Marks for this class: %d", result);
+}
