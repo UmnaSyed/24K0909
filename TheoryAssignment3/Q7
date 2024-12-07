@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct  ContentMetadata {
+    char title[100];
+    float rating;
+    int runtime;     
+    char encoding[50];
+};
+struct DevicePreferences {
+    char resolution[20];
+    char playbackHistory[200];
+    float bandwidthUsage; 
+};
+
+double** initializeEngagementMatrix(int numUsers, int numCategories);
+DevicePreferences*** initializeDeviceMatrix(int numUsers, int numDevices);
+ContentMetadata*** initializeContentMatrix(int numCategories, int numContents);
+void displayEngagementMatrix(double** matrix, int numUsers, int numCategories);
+void freeEngagementMatrix(double** matrix, int numUsers);
+void freeDeviceMatrix(DevicePreferences*** matrix, int numUsers, int numDevices);
+void freeContentMatrix(ContentMetadata*** matrix, int numCategories, int numContents);
+
+int main() {
+    int numUsers, numCategories, numDevices, numContents;
+
+    printf("Enter the number of users: ");
+    scanf("%d", &numUsers);
+    printf("Enter the number of content categories: ");
+    scanf("%d", &numCategories);
+    printf("Enter the number of devices per user: ");
+    scanf("%d", &numDevices);
+    printf("Enter the number of contents per category: ");
+    scanf("%d", &numContents);
+
+    double** engagementMatrix = initializeEngagementMatrix(numUsers, numCategories);
+
+    DevicePreferences*** deviceMatrix = initializeDeviceMatrix(numUsers, numDevices);
+    ContentMetadata*** contentMatrix = initializeContentMatrix(numCategories, numContents);
+
+    printf("\nEngagement Matrix:\n");
+    displayEngagementMatrix(engagementMatrix, numUsers, numCategories);
+
+    freeEngagementMatrix(engagementMatrix, numUsers);
+    freeDeviceMatrix(deviceMatrix, numUsers, numDevices);
+    freeContentMatrix(contentMatrix, numCategories, numContents);
+
+    return 0;
+}
+
+double** initializeEngagementMatrix(int numUsers, int numCategories) {
+    double** matrix = (double**)malloc(numUsers * sizeof(double*));
+    for (int i = 0; i < numUsers; i++) {
+        matrix[i] = (double*)malloc(numCategories * sizeof(double));
+        for (int j = 0; j < numCategories; j++) {
+            matrix[i][j] = (rand() % 100) / 10.0; 
+        }
+    }
+    return matrix;
+}
+
+
+DevicePreferences*** initializeDeviceMatrix(int numUsers, int numDevices) {
+    DevicePreferences*** matrix = (DevicePreferences***)malloc(numUsers * sizeof(DevicePreferences**));
+    for (int i = 0; i < numUsers; i++) {
+        matrix[i] = (DevicePreferences**)malloc(numDevices * sizeof(DevicePreferences*));
+        for (int j = 0; j < numDevices; j++) {
+            matrix[i][j] = (DevicePreferences*)malloc(sizeof(DevicePreferences));
+            snprintf(matrix[i][j]->resolution, 20, "1080p");
+            snprintf(matrix[i][j]->playbackHistory, 200, "Watched 3 movies");
+            matrix[i][j]->bandwidthUsage = (rand() % 100) / 10.0;
+        }
+    }
+    return matrix;
+}
+
+ContentMetadata*** initializeContentMatrix(int numCategories, int numContents) {
+    ContentMetadata*** matrix = (ContentMetadata***)malloc(numCategories * sizeof(ContentMetadata**));
+    for (int i = 0; i < numCategories; i++) {
+        matrix[i] = (ContentMetadata**)malloc(numContents * sizeof(ContentMetadata*));
+        for (int j = 0; j < numContents; j++) {
+            matrix[i][j] = (ContentMetadata*)malloc(sizeof(ContentMetadata));
+            snprintf(matrix[i][j]->title, 100, "Content %d-%d", i + 1, j + 1);
+            matrix[i][j]->rating = (rand() % 50) / 10.0 + 5.0; 
+            matrix[i][j]->runtime = (rand() % 120) + 60;       
+            snprintf(matrix[i][j]->encoding, 50, "H.264");
+        }
+    }
+    return matrix;
+}
+
+void displayEngagementMatrix(double** matrix, int numUsers, int numCategories) {
+    for (int i = 0; i < numUsers; i++) {
+        printf("User %d: ", i + 1);
+        for (int j = 0; j < numCategories; j++) {
+            printf("%.1f ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void freeEngagementMatrix(double** matrix, int numUsers) {
+    for (int i = 0; i < numUsers; i++) {
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
+void freeDeviceMatrix(DevicePreferences*** matrix, int numUsers, int numDevices) {
+    for (int i = 0; i < numUsers; i++) {
+        for (int j = 0; j < numDevices; j++) {
+            free(matrix[i][j]);
+        }
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
+void freeContentMatrix(ContentMetadata*** matrix, int numCategories, int numContents) {
+    for (int i = 0; i < numCategories; i++) {
+        for (int j = 0; j < numContents; j++) {
+            free(matrix[i][j]);
+        }
+        free(matrix[i]);
+    }
+    free(matrix);
+}
